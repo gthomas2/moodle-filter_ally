@@ -314,6 +314,7 @@ function($, Templates, Ally, ImageCover, Util) {
 
         /**
          * Add annotations to forums.
+         * @param array forumMapping.
          */
         var annotateForums = function(forumMapping) {
 
@@ -334,6 +335,10 @@ function($, Templates, Ally, ImageCover, Util) {
             }
         };
 
+        /**
+         * Add annotations to moodlerooms forums.
+         * @param array forumMapping
+         */
         var annotateMRForums = function(forumMapping) {
 
             // Annotate introductions.
@@ -348,6 +353,29 @@ function($, Templates, Ally, ImageCover, Util) {
             }
         };
 
+        /**
+         * Add annotations to glossary.
+         * @param array mapping
+         */
+        var annotateGlossary = function(mapping) {
+            // Annotate introductions.
+            var intros = mapping['intros'];
+            annotateModuleIntros(intros, 'glossary');
+
+            // Annotate entries.
+            var entries = mapping['entries'];
+            for (var e in entries) {
+                var annotation = entries[e];
+                var entryFooter = $('.entrylowersection .commands a[href*="id=' + e + '"]');
+                var entry = $(entryFooter).parents('.glossarypost').find('.entry .no-overflow');
+                $(entry).attr('data-ally-richcontent', annotation);
+            }
+        };
+
+        /**
+         * Annotate supported modules
+         * @param moduleMapping
+         */
         var annotateModules = function(moduleMapping) {
             var dfd = $.Deferred();
             if (moduleMapping['mod_forum'] !== undefined) {
@@ -355,6 +383,9 @@ function($, Templates, Ally, ImageCover, Util) {
             }
             if (moduleMapping['mod_hsuforum'] !== undefined) {
                 annotateMRForums(moduleMapping['mod_hsuforum']);
+            }
+            if (moduleMapping['mod_glossary'] !== undefined) {
+                annotateGlossary(moduleMapping['mod_glossary']);
             }
             dfd.resolve();
             return dfd.promise();
