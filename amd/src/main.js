@@ -305,6 +305,9 @@ function($, Templates, Ally, ImageCover, Util) {
                     'li.activity.modtype_' + module + '#module-' + c + ' .contentafterlink > .no-overflow > .no-overflow',
                     'li.snap-activity.modtype_' + module + '#module-' + c + ' .contentafterlink > .no-overflow'
                 ];
+                if (module === 'hsuforum') {
+                    selectors.push('#hsuforum-header .hsuforum_introduction > .no-overflow');
+                }
                 $(selectors.join(',')).attr('data-ally-richcontent', annotation);
             }
         };
