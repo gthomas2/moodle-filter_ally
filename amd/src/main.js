@@ -278,7 +278,7 @@ function($, Templates, Ally, ImageCover, Util) {
 
             for (var s in sectionMapping) {
                 var sectionId = sectionMapping[s];
-                var ident = buildContentIdent('course', 'course_section', 'summary', sectionId);
+                var ident = buildContentIdent('course', 'course_sections', 'summary', sectionId);
 
                 var selectors = [
                     '#' + s + ' > .content > div[class*="summary"] > .no-overflow',
