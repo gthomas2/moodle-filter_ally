@@ -175,4 +175,7 @@ jobs:
 
       - name: Ally filter Behat test
         if: ${{ always() }}
-        run: moodle-plugin-ci behat --profile chrome
+        run: | 
+             cd moodle
+             moodle-plugin-ci behat --profile chrome
+             moodle-plugin-ci behat --profile chrome report/allylti
