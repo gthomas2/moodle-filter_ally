@@ -163,7 +163,7 @@ jobs:
         if: ${{ always() }}
         run: |
           rm -rf moodledata/phpu_moodledata/cache
-          moodle-plugin-ci phpunit --fail-on-warning
+          moodle-plugin-ci phpunit --fail-on-warning filter/ally
 
       - name: Ally tool PHPUnit test
         if: ${{ always() }}
@@ -183,4 +183,4 @@ jobs:
 
       - name: Ally filter Behat test
         if: ${{ always() }}
-        run: moodle-plugin-ci behat --profile chrome
+        run: moodle-plugin-ci behat --profile chrome filter/ally
